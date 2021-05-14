@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
+      <view class="userinfo-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+      <view class="userinfo-gender">
+        <open-data type="userGender" lang="zh_CN"></open-data>
+      </view>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <!-- <view class="usermotto"> -->
+    <!-- <text class="user-motto">{{motto}}</text> -->
+  <!-- </view> -->
+  <van-button plain hairline type="primary">细边框按钮</van-button>
+<van-button plain hairline type="info">细边框按钮</van-button>
+<van-button type="danger" >危险按钮</van-button>
+<van-button loading type="info" size="small" loading-text="加载中..." />
+<!-- <van-button type="primary" size="small">小型按钮</van-button> -->
+<van-icon name="weapp-nav" size="4em"> </van-icon>
+<van-circle value="{{ processor }}" text="text" />
+
+  <view class="exitbutton">
+    <text class="exitbutton" bindtap="exitVoiWechat">exit</text>
+  </view>
+</view>
